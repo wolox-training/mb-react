@@ -6,25 +6,25 @@ $bt-scale: null;
 $bd-scale: null;
 
 @media (max-width: $breakpoint-tablet) {
-  $bt-scale: 5;
+  $bt-scale: 4;
 }
 
 @media (min-width: $breakpoint-desktop) {
-  $bd-scale: 5;
+  $bd-scale: 4;
 }
 
-$scale: $bt-scale or $bd-scale or 5;
+$scale: $bt-scale or $bd-scale or 4;
 
-$min-top: 5;
+$min-top: 4;
 $max-top: 100;
 
-$min-right: 5;
+$min-right: 4;
 $max-right: 50;
 
-$min-bottom: 5;
+$min-bottom: 4;
 $max-bottom: 100;
 
-$min-left: 5;
+$min-left: 4;
 $max-left: 50;
 
 // Top margins

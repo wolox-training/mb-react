@@ -1,0 +1,24 @@
+@import 'scss/variables/_colors';
+
+.login-wrapper {
+  background: $wild-sand;
+  border-top: 8px solid $cerulean;
+  margin: 52px auto;
+  max-width: 300px;
+  padding: 20px 24px 24px;
+  position: relative;
+  width: 100%;
+}
+
+.img {
+  display: block;
+  margin: 0 auto 16px;
+}
+
+.form {
+  gap: 16px;
+}
+
+.divider {
+  border-top: 2px solid $silver-chalice;
+}

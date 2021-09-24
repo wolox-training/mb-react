@@ -1,0 +1,44 @@
+@import 'scss/variables/_colors';
+
+.button {
+  width: 100%;
+  padding: 4px 12px;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.contained {
+  composes: button;
+  background-color: $earls-green;
+  color: $white;
+
+  &:hover {
+    background-color: $cerulean;
+  }
+
+  &.disabled {
+    background-color: $alto;
+    pointer-events: none;
+  }
+}
+
+.outlined {
+  composes: button;
+  color: $earls-green;
+  border: 2px solid $earls-green;
+
+  &:hover {
+    border: 2px solid $cerulean;
+    color: $cerulean;
+  }
+}
+
+.text {
+  composes: button;
+  color: $silver-chalice;
+
+  &:hover {
+    color: $cerulean;
+  }
+}
