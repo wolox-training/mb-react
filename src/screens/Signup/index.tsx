@@ -1,32 +1,32 @@
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 
+import { signUp } from 'services/UsersService';
+import { useLazyRequest } from 'hooks/useRequest';
+import { User } from 'utils/types';
 import Button from 'components/Button';
 import Input from 'components/Input';
 
 import logo from './assets/wolox-logo.png';
 import styles from './styles.module.scss';
 
-interface SignupForm {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
-}
-
 function Signup() {
   const { t, i18n } = useTranslation();
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors }
-  } = useForm<SignupForm>();
-
+  } = useForm<User>();
   const password = watch('password');
 
-  const onSubmit = handleSubmit((values) => console.log({ ...values, locale: 'en' }));
+  const [state, loading, error, sendRequest] = useLazyRequest({ request: signUp });
+
+  const onSubmit = handleSubmit((values) => {
+    sendRequest(values);
+    console.log(state, loading, error);
+  });
 
   const handleChangeLanguage = () => {
     i18n.changeLanguage(i18n.language === 'es' ? 'en' : 'es');
