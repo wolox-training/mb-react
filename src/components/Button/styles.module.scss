@@ -1,11 +1,11 @@
 @import 'scss/variables/_colors';
 
 .button {
-  width: 100%;
-  padding: 4px 12px;
   border-radius: 5px;
   font-size: 16px;
   line-height: 24px;
+  padding: 4px 12px;
+  width: 100%;
 }
 
 .contained {
@@ -25,8 +25,8 @@
 
 .outlined {
   composes: button;
-  color: $earls-green;
   border: 2px solid $earls-green;
+  color: $earls-green;
 
   &:hover {
     border: 2px solid $cerulean;

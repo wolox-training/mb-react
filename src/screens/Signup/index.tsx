@@ -13,7 +13,6 @@ interface SignupForm {
   email: string;
   password: string;
   passwordConfirmation: string;
-  prueba: string;
 }
 
 function Signup() {
@@ -35,7 +34,7 @@ function Signup() {
 
   return (
     <div className={styles.loginWrapper}>
-      <img src={logo} className={styles.img} />
+      <img src={logo} alt="Wolox Logo" className={styles.img} />
       <form action="" className={`column ${styles.form}`} onSubmit={onSubmit}>
         <Input
           inputType="text"
