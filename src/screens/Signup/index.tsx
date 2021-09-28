@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
+import { passwordRegex } from 'utils/formValidations';
 
 import logo from './assets/wolox-logo.png';
 import styles from './styles.module.scss';
@@ -33,9 +34,9 @@ function Signup() {
   };
 
   return (
-    <div className={styles.loginWrapper}>
+    <div className={styles.signupWrapper}>
       <img src={logo} alt="Wolox Logo" className={styles.img} />
-      <form action="" className={`column ${styles.form}`} onSubmit={onSubmit}>
+      <form className={`column ${styles.form}`} onSubmit={onSubmit}>
         <Input
           inputType="text"
           name="firstName"
@@ -64,7 +65,7 @@ function Signup() {
           inputRef={register({
             required: `${t('Signup:requiredInput')}`,
             pattern: {
-              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+              value: passwordRegex,
               message: `${t('Signup:passwordRequirements')}`
             }
           })}
@@ -80,11 +81,16 @@ function Signup() {
           })}
           errorText={errors.passwordConfirmation ? errors.passwordConfirmation.message : ''}
         />
-        <Button submit text="Sign Up" className="m-top-2" />
+        <Button type="submit" text={t('Signup:signUp')} className="m-top-2" />
         <hr className={styles.divider} />
-        <Button variant="outlined" text="Login" />
+        <Button variant="outlined" text={t('Signup:login')} />
       </form>
-      <Button variant="text" text="Cambiar idioma" onClick={handleChangeLanguage} className="m-top-4" />
+      <Button
+        variant="text"
+        text={t('Signup:changeLanguage')}
+        onClick={handleChangeLanguage}
+        className="m-top-4"
+      />
     </div>
   );
 }
