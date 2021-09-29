@@ -6,6 +6,7 @@ import { useLazyRequest } from 'hooks/useRequest';
 import { User } from 'utils/types';
 import Button from 'components/Button';
 import Input from 'components/Input';
+import Spinner from 'components/Spinner';
 
 import logo from './assets/wolox-logo.png';
 import styles from './styles.module.scss';
@@ -21,11 +22,15 @@ function Signup() {
   } = useForm<User>();
   const password = watch('password');
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state, loading, error, sendRequest] = useLazyRequest({ request: signUp });
+  const errorMessage =
+    error?.problem === 'NETWORK_ERROR'
+      ? 'Hubo un problema al cargar los datos, volvé a intentarlo en unos minutos'
+      : 'Ese email ya está registrado';
 
   const onSubmit = handleSubmit((values) => {
     sendRequest(values);
-    console.log(state, loading, error);
   });
 
   const handleChangeLanguage = () => {
@@ -80,11 +85,17 @@ function Signup() {
           })}
           errorText={errors.passwordConfirmation ? errors.passwordConfirmation.message : ''}
         />
+        {error && <p className={styles.errorMessage}>{errorMessage}</p>}
         <Button submit text="Sign Up" className="m-top-2" />
         <hr className={styles.divider} />
         <Button variant="outlined" text="Login" />
       </form>
       <Button variant="text" text="Cambiar idioma" onClick={handleChangeLanguage} className="m-top-4" />
+      {loading && (
+        <div className={styles.overlayContainer}>
+          <Spinner containerClassName={styles.spinner} color={styles.cerulean} />
+        </div>
+      )}
     </div>
   );
 }

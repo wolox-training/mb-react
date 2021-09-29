@@ -1,4 +1,7 @@
 @import 'scss/variables/_colors';
+@import 'scss/variables/animations';
+
+:export { cerulean: $cerulean; }
 
 .login-wrapper {
   background: $wild-sand;
@@ -21,4 +24,25 @@
 
 .divider {
   border-top: 2px solid $silver-chalice;
+}
+
+.overlay-container {
+  background-color: rgba($wild-sand, 0.8);
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  height: 100%;
+  left: 0;
+  width: 100%;
+}
+
+.spinner {
+  position: relative;
+  top: 50%;
+}
+
+.error-message {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  color: $error-red;
+  text-align: center;
 }
