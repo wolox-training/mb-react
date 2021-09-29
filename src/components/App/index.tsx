@@ -1,8 +1,8 @@
-import Home from 'screens/Home';
+import Signup from 'screens/Signup';
 import 'scss/application.scss';
 
 function App() {
-  return <Home />;
+  return <Signup />;
 }
 
 export default App;

@@ -1,0 +1,44 @@
+@import 'variables/colors';
+
+.button {
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 12px;
+  width: 100%;
+}
+
+.contained {
+  composes: button;
+  background-color: $earls-green;
+  color: $white;
+
+  &:hover {
+    background-color: $cerulean;
+  }
+
+  &.disabled {
+    background-color: $alto;
+    pointer-events: none;
+  }
+}
+
+.outlined {
+  composes: button;
+  border: 2px solid $earls-green;
+  color: $earls-green;
+
+  &:hover {
+    border: 2px solid $cerulean;
+    color: $cerulean;
+  }
+}
+
+.text {
+  composes: button;
+  color: $silver-chalice;
+
+  &:hover {
+    color: $cerulean;
+  }
+}
