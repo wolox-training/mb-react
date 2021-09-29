@@ -3,7 +3,12 @@ import { useForm } from 'react-hook-form';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
-import { passwordRegex } from 'utils/formValidations';
+import {
+  requiredValidation,
+  emailValidation,
+  passwordValidation,
+  confirmPasswordValidation
+} from 'utils/formValidations';
 
 import logo from './assets/wolox-logo.png';
 import styles from './styles.module.scss';
@@ -25,8 +30,6 @@ function Signup() {
     formState: { errors }
   } = useForm<SignupForm>();
 
-  const password = watch('password');
-
   const onSubmit = handleSubmit((values) => console.log({ ...values, locale: 'en' }));
 
   const handleChangeLanguage = () => {
@@ -41,44 +44,35 @@ function Signup() {
           inputType="text"
           name="firstName"
           label={t('Signup:firstName')}
-          inputRef={register({ required: `${t('Signup:requiredInput')}` })}
+          inputRef={register(requiredValidation(t))}
           errorText={errors.firstName ? errors.firstName.message : ''}
         />
         <Input
           inputType="text"
           name="lastName"
           label={t('Signup:lastName')}
-          inputRef={register({ required: `${t('Signup:requiredInput')}` })}
+          inputRef={register(requiredValidation(t))}
           errorText={errors.lastName ? errors.lastName.message : ''}
         />
         <Input
           inputType="text"
           name="email"
           label={t('Signup:email')}
-          inputRef={register({ required: `${t('Signup:requiredInput')}` })}
+          inputRef={register(emailValidation(t))}
           errorText={errors.email ? errors.email.message : ''}
         />
         <Input
           inputType="password"
           name="password"
           label={t('Signup:password')}
-          inputRef={register({
-            required: `${t('Signup:requiredInput')}`,
-            pattern: {
-              value: passwordRegex,
-              message: `${t('Signup:passwordRequirements')}`
-            }
-          })}
+          inputRef={register(passwordValidation(t))}
           errorText={errors.password ? errors.password.message : ''}
         />
         <Input
           inputType="password"
           name="passwordConfirmation"
           label={t('Signup:passwordConfirmation')}
-          inputRef={register({
-            required: `${t('Signup:requiredInput')}`,
-            validate: (value) => value === password || `${t('Signup:passwordConfirmationError')}`
-          })}
+          inputRef={register(confirmPasswordValidation(t, watch('password')))}
           errorText={errors.passwordConfirmation ? errors.passwordConfirmation.message : ''}
         />
         <Button type="submit" text={t('Signup:signUp')} className="m-top-2" />
