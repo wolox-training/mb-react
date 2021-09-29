@@ -8,7 +8,8 @@ i18next.addResources('es', 'Signup', {
   passwordConfirmation: 'Confirmación de Password',
   signUp: 'Sign Up',
   login: 'Login',
-  changeLanguage: 'Change Language'
+  changeLanguage: 'Change Language',
+  logoAlt: 'Wolox Logo'
 });
 
 i18next.addResources('en', 'Signup', {
@@ -19,5 +20,6 @@ i18next.addResources('en', 'Signup', {
   passwordConfirmation: 'Confirm Password',
   signUp: 'Sign Up',
   login: 'Login',
-  changeLanguage: 'Cambiar idioma'
+  changeLanguage: 'Cambiar idioma',
+  logoAlt: 'Wolox Logo'
 });
