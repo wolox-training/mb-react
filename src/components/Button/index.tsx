@@ -1,31 +1,22 @@
+import { HTMLProps } from 'react';
+import classNames from 'classnames';
+
 import styles from './styles.module.scss';
 
-interface Props extends React.ComponentPropsWithoutRef<'button'> {
+interface Props extends HTMLProps<HTMLButtonElement> {
+  type?: 'button' | 'submit';
   className?: string;
-  submit?: boolean;
   text: string;
-  variant?: string;
+  variant?: 'contained' | 'outlined' | 'text';
 }
 
-function Button({
-  className = '',
-  disabled = false,
-  submit = false,
-  text,
-  variant = 'contained',
-  onClick
-}: Props) {
+function Button({ className = '', disabled = false, text, variant = 'contained', ...props }: Props) {
+  const btnClasses = classNames(styles[variant], { [styles.disabled]: disabled }, className);
+
   return (
-    <div>
-      <button
-        className={`${(styles.button, styles[variant])} ${disabled ? styles.disabled : ''} ${className}`}
-        disabled={disabled}
-        type={submit ? 'submit' : 'button'}
-        onClick={onClick}
-      >
-        {text}
-      </button>
-    </div>
+    <button className={btnClasses} disabled={disabled} type="button" {...props}>
+      {text}
+    </button>
   );
 }
 

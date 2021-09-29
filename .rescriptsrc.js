@@ -22,6 +22,7 @@ const createLoaderMatcher = loader => rule =>
 const oneOfFileLoaders = config => config.module.rules.find(rule => rule.oneOf).oneOf;
 
 const cssLoaderMatcher = createLoaderMatcher('css-loader');
+const sassLoaderMatcher = createLoaderMatcher('sass-loader');
 
 const addCamelCaseToCSSModules = config => {
   const fileLoaders = oneOfFileLoaders(config);
@@ -31,6 +32,12 @@ const addCamelCaseToCSSModules = config => {
       loader.use.forEach(use => {
         if (cssLoaderMatcher(use) && use.options.modules) {
           use.options.modules.exportLocalsConvention = 'camelCase';
+        }
+        if (sassLoaderMatcher(use)) {
+          use.options.sassOptions = {
+            ...use.options.sassOptions,
+            includePaths: [path.resolve(__dirname, 'src/scss')]
+          };
         }
       });
     }

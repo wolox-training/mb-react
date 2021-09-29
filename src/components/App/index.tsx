@@ -1,4 +1,3 @@
-// import Home from 'screens/Home';
 import Signup from 'screens/Signup';
 import 'scss/application.scss';
 

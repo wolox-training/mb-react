@@ -1,9 +1,9 @@
-@import 'scss/variables/_colors';
-@import 'scss/variables/animations';
+@import 'variables/_colors';
+@import 'variables/animations';
 
 :export { cerulean: $cerulean; }
 
-.login-wrapper {
+.signup-wrapper {
   background: $wild-sand;
   border-top: 8px solid $cerulean;
   margin: 52px auto;

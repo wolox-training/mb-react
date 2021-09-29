@@ -1,17 +1,17 @@
-import { FormEvent } from 'react';
+import { FormEvent, Ref } from 'react';
 
 import styles from './styles.module.scss';
 
 interface Props {
   disabled?: boolean;
   errorText?: string;
-  inputRef?: any;
+  inputRef?: Ref<HTMLInputElement>;
   inputType: string;
   label?: string;
   name: string;
-  onBlur?: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  onChange?: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  onFocus?: (e: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onBlur?: (e: FormEvent<HTMLInputElement>) => void;
+  onChange?: (e: FormEvent<HTMLInputElement>) => void;
+  onFocus?: (e: FormEvent<HTMLInputElement>) => void;
 }
 
 function Input({
@@ -27,7 +27,11 @@ function Input({
 }: Props) {
   return (
     <div className="column">
-      {label && <label className={`m-bottom-2 ${styles.label}`}>{label}</label>}
+      {label && (
+        <label htmlFor={name} className={`m-bottom-2 ${styles.label}`}>
+          {label}
+        </label>
+      )}
       <input
         type={inputType}
         name={name}

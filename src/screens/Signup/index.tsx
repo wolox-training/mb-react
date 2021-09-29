@@ -7,6 +7,12 @@ import { User } from 'utils/types';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import Spinner from 'components/Spinner';
+import {
+  requiredValidation,
+  emailValidation,
+  passwordValidation,
+  confirmPasswordValidation
+} from 'utils/formValidations';
 
 import logo from './assets/wolox-logo.png';
 import styles from './styles.module.scss';
@@ -20,7 +26,6 @@ function Signup() {
     watch,
     formState: { errors }
   } = useForm<User>();
-  const password = watch('password');
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state, loading, error, sendRequest] = useLazyRequest({ request: signUp });
@@ -38,59 +43,55 @@ function Signup() {
   };
 
   return (
-    <div className={styles.loginWrapper}>
+    <div className={styles.signupWrapper}>
       <img src={logo} alt="Wolox Logo" className={styles.img} />
-      <form action="" className={`column ${styles.form}`} onSubmit={onSubmit}>
+      <form className={`column ${styles.form}`} onSubmit={onSubmit}>
         <Input
           inputType="text"
           name="firstName"
           label={t('Signup:firstName')}
-          inputRef={register({ required: `${t('Signup:requiredInput')}` })}
+          inputRef={register(requiredValidation(t))}
           errorText={errors.firstName ? errors.firstName.message : ''}
         />
         <Input
           inputType="text"
           name="lastName"
           label={t('Signup:lastName')}
-          inputRef={register({ required: `${t('Signup:requiredInput')}` })}
+          inputRef={register(requiredValidation(t))}
           errorText={errors.lastName ? errors.lastName.message : ''}
         />
         <Input
           inputType="text"
           name="email"
           label={t('Signup:email')}
-          inputRef={register({ required: `${t('Signup:requiredInput')}` })}
+          inputRef={register(emailValidation(t))}
           errorText={errors.email ? errors.email.message : ''}
         />
         <Input
           inputType="password"
           name="password"
           label={t('Signup:password')}
-          inputRef={register({
-            required: `${t('Signup:requiredInput')}`,
-            pattern: {
-              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-              message: `${t('Signup:passwordRequirements')}`
-            }
-          })}
+          inputRef={register(passwordValidation(t))}
           errorText={errors.password ? errors.password.message : ''}
         />
         <Input
           inputType="password"
           name="passwordConfirmation"
           label={t('Signup:passwordConfirmation')}
-          inputRef={register({
-            required: `${t('Signup:requiredInput')}`,
-            validate: (value) => value === password || `${t('Signup:passwordConfirmationError')}`
-          })}
+          inputRef={register(confirmPasswordValidation(t, watch('password')))}
           errorText={errors.passwordConfirmation ? errors.passwordConfirmation.message : ''}
         />
         {error && <p className={styles.errorMessage}>{errorMessage}</p>}
-        <Button submit text="Sign Up" className="m-top-2" />
+        <Button type="submit" text={t('Signup:signUp')} className="m-top-2" />
         <hr className={styles.divider} />
-        <Button variant="outlined" text="Login" />
+        <Button variant="outlined" text={t('Signup:login')} />
       </form>
-      <Button variant="text" text="Cambiar idioma" onClick={handleChangeLanguage} className="m-top-4" />
+      <Button
+        variant="text"
+        text={t('Signup:changeLanguage')}
+        onClick={handleChangeLanguage}
+        className="m-top-4"
+      />
       {loading && (
         <div className={styles.overlayContainer}>
           <Spinner containerClassName={styles.spinner} color={styles.cerulean} />

@@ -6,10 +6,9 @@ i18next.addResources('es', 'Signup', {
   email: 'Email',
   password: 'Password',
   passwordConfirmation: 'Confirmación de Password',
-  requiredInput: 'Este campo es obligatorio',
-  passwordRequirements:
-    'La contraseña debe tener al menos 8 caracteres y contener al menos una letra y un número',
-  passwordConfirmationError: 'La contraseña no coincide'
+  signUp: 'Sign Up',
+  login: 'Login',
+  changeLanguage: 'Change Language'
 });
 
 i18next.addResources('en', 'Signup', {
@@ -18,7 +17,7 @@ i18next.addResources('en', 'Signup', {
   email: 'Email',
   password: 'Password',
   passwordConfirmation: 'Confirm Password',
-  requiredInput: 'This field is required',
-  passwordRequirements: 'The password must contain at least 8 characters, one letter and one number',
-  passwordConfirmationError: "The password doesn't match"
+  signUp: 'Sign Up',
+  login: 'Login',
+  changeLanguage: 'Cambiar idioma'
 });
