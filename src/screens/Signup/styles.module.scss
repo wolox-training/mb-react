@@ -1,8 +1,6 @@
 @import 'variables/_colors';
 @import 'variables/animations';
 
-:export { cerulean: $cerulean; }
-
 .signup-wrapper {
   background: $wild-sand;
   border-top: 8px solid $cerulean;

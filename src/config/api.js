@@ -46,11 +46,15 @@ export const apiSetup = (unauthorizedCallback, networkErrorCallback) => {
 };
 
 api.addRequestTransform(request => {
-  request.data = snakecaseSerializer.serialize(request.data);
+  if(request.data) {
+    request.data = snakecaseSerializer.serialize(request.data);
+  }
 });
 
 api.addResponseTransform(response => {
-  response.data = camelcaseSerializer.serialize(response.data);
+  if(response.data) {
+    response.data = camelcaseSerializer.serialize(response.data);
+  }
 })
 
 export default api;
