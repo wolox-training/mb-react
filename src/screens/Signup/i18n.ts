@@ -9,7 +9,8 @@ i18next.addResources('es', 'Signup', {
   signUp: 'Sign Up',
   login: 'Login',
   changeLanguage: 'Change Language',
-  registeredEmailError: 'Ese email ya está registrado'
+  registeredEmailError: 'Ese email ya está registrado',
+  logoAlt: 'Wolox Logo'
 });
 
 i18next.addResources('en', 'Signup', {
@@ -21,5 +22,6 @@ i18next.addResources('en', 'Signup', {
   signUp: 'Sign Up',
   login: 'Login',
   changeLanguage: 'Cambiar idioma',
-  registeredEmailError: 'Email already registered'
+  registeredEmailError: 'Email already registered',
+  logoAlt: 'Wolox Logo'
 });
