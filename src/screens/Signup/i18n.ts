@@ -8,7 +8,8 @@ i18next.addResources('es', 'Signup', {
   passwordConfirmation: 'Confirmación de Password',
   signUp: 'Sign Up',
   login: 'Login',
-  changeLanguage: 'Change Language'
+  changeLanguage: 'Change Language',
+  registeredEmailError: 'Ese email ya está registrado'
 });
 
 i18next.addResources('en', 'Signup', {
@@ -19,5 +20,6 @@ i18next.addResources('en', 'Signup', {
   passwordConfirmation: 'Confirm Password',
   signUp: 'Sign Up',
   login: 'Login',
-  changeLanguage: 'Cambiar idioma'
+  changeLanguage: 'Cambiar idioma',
+  registeredEmailError: 'Email already registered'
 });

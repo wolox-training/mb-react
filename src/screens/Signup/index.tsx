@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 
 import { signUp } from 'services/UsersService';
 import { useLazyRequest } from 'hooks/useRequest';
 import { User } from 'utils/types';
+import { getNetworkError } from 'utils/errorValidations';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import Spinner from 'components/Spinner';
@@ -18,6 +20,8 @@ import logo from './assets/wolox-logo.png';
 import styles from './styles.module.scss';
 
 function Signup() {
+  const [errorMessage, setErrorMsg] = useState('');
+
   const { t, i18n } = useTranslation();
 
   const {
@@ -27,12 +31,12 @@ function Signup() {
     formState: { errors }
   } = useForm<User>();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [state, loading, error, sendRequest] = useLazyRequest({ request: signUp });
-  const errorMessage =
-    error?.problem === 'NETWORK_ERROR'
-      ? 'Hubo un problema al cargar los datos, volvé a intentarlo en unos minutos'
-      : 'Ese email ya está registrado';
+  const [, loading, error, sendRequest] = useLazyRequest({
+    request: signUp,
+    withPostFailure: (err) => {
+      setErrorMsg(getNetworkError(err, t('Signup:registeredEmailError')));
+    }
+  });
 
   const onSubmit = handleSubmit((values) => {
     sendRequest(values);

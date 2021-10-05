@@ -1,5 +1,9 @@
 import i18next from 'i18next';
 
+i18next.addResources('es', 'Common', {
+  networkError: 'Hubo un problema al cargar los datos, volvé a intentarlo en unos minutos'
+});
+
 i18next.addResources('es', 'FormValidations', {
   required: 'Este campo es obligatorio',
   invalidEmail: 'El email no es válido',
