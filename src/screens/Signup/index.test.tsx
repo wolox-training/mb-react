@@ -19,6 +19,13 @@ describe('Signup component', () => {
       userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
       expect(await screen.findByText(/FormValidations:invalidEmail/)).toBeVisible();
     });
+
+    test('Should show error message if password confimation does not match password', async () => {
+      userEvent.type(screen.getByLabelText(/^Signup:password$/), 'password123');
+      userEvent.type(screen.getByLabelText(/Signup:passwordConfirmation/), 'password124');
+      userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
+      expect(await screen.findByText(/FormValidations:confirmPasswordError/)).toBeVisible();
+    });
   });
 
   describe('With valid inputs', () => {
@@ -44,6 +51,7 @@ describe('Signup component', () => {
 
     test('Should submit form if all fields are valid', async () => {
       userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
+      await waitFor(() => expect(screen.queryByText(/Signup:registeredEmailError/)).toBeNull());
     });
 
     test('Should submit and show error if user is already registered', async () => {
@@ -53,7 +61,7 @@ describe('Signup component', () => {
         )
       );
       userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
-      await waitFor(() => expect(screen.queryByText('Ese email ya está registrado')).toBeVisible());
+      await waitFor(() => expect(screen.queryByText(/Signup:registeredEmailError/)).toBeVisible());
     });
   });
 });
