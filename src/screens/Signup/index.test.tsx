@@ -10,20 +10,20 @@ describe('Signup component', () => {
 
   describe('With invalid inputs', () => {
     test('Should show error messages when all fields are empty', async () => {
-      userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
+      userEvent.click(screen.getByText(/Signup:signUp/));
       expect((await screen.findAllByText(/FormValidations:required/)).length).toBe(5);
     });
 
     test('Should show error message if email is invalid', async () => {
       userEvent.type(screen.getByLabelText(/Signup:email/), 'analopez.gmail.com');
-      userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
+      userEvent.click(screen.getByText(/Signup:signUp/));
       expect(await screen.findByText(/FormValidations:invalidEmail/)).toBeVisible();
     });
 
     test('Should show error message if password confimation does not match password', async () => {
       userEvent.type(screen.getByLabelText(/^Signup:password$/), 'password123');
       userEvent.type(screen.getByLabelText(/Signup:passwordConfirmation/), 'password124');
-      userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
+      userEvent.click(screen.getByText(/Signup:signUp/));
       expect(await screen.findByText(/FormValidations:confirmPasswordError/)).toBeVisible();
     });
   });
@@ -50,8 +50,8 @@ describe('Signup component', () => {
     afterAll(() => server.close());
 
     test('Should submit form if all fields are valid', async () => {
-      userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
-      await waitFor(() => expect(screen.queryByText(/Signup:registeredEmailError/)).toBeNull());
+      userEvent.click(screen.getByText(/Signup:signUp/));
+      await waitFor(() => expect(screen.queryByText(/Signup:registeredEmailError/)).not.toBeInTheDocument());
     });
 
     test('Should submit and show error if user is already registered', async () => {
@@ -60,7 +60,7 @@ describe('Signup component', () => {
           res(ctx.status(422), ctx.json({ errors: { email: 'has already been taken' } }))
         )
       );
-      userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
+      userEvent.click(screen.getByText(/Signup:signUp/));
       await waitFor(() => expect(screen.queryByText(/Signup:registeredEmailError/)).toBeVisible());
     });
   });
