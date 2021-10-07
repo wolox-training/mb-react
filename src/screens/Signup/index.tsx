@@ -48,7 +48,7 @@ function Signup() {
 
   return (
     <div className={styles.signupWrapper}>
-      <img src={logo} alt="Wolox Logo" className={styles.img} />
+      <img src={logo} alt={t('Signup:logoAlt')} className={styles.img} />
       <form className={`column ${styles.form}`} onSubmit={onSubmit}>
         <Input
           inputType="text"
@@ -98,7 +98,7 @@ function Signup() {
       />
       {loading && (
         <div className={styles.overlayContainer}>
-          <Spinner containerClassName={styles.spinner} color={styles.cerulean} />
+          <Spinner containerClassName={styles.spinner} />
         </div>
       )}
     </div>
