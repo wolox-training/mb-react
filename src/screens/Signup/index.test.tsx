@@ -51,7 +51,7 @@ describe('Signup component', () => {
 
     test('Should submit form if all fields are valid', async () => {
       userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
-      await waitFor(() => expect(screen.queryByText(/Signup:registeredEmailError/)).toBeNull());
+      await waitFor(() => expect(screen.queryByText(/Signup:registeredEmailError/)).not.toBeInTheDocument());
     });
 
     test('Should submit and show error if user is already registered', async () => {
@@ -61,7 +61,7 @@ describe('Signup component', () => {
         )
       );
       userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
-      await waitFor(() => expect(screen.queryByText(/Signup:registeredEmailError/)).toBeVisible());
+      await waitFor(() => expect(screen.getByText(/Signup:registeredEmailError/)).toBeVisible());
     });
   });
 });
