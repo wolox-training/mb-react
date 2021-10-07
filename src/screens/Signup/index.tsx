@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router';
 
 import { signUp } from 'services/UsersService';
 import { useLazyRequest } from 'hooks/useRequest';
@@ -20,8 +21,8 @@ import logo from './assets/wolox-logo.png';
 import styles from './styles.module.scss';
 
 function Signup() {
+  const history = useHistory();
   const [errorMessage, setErrorMsg] = useState('');
-
   const { t, i18n } = useTranslation();
 
   const {
@@ -33,6 +34,9 @@ function Signup() {
 
   const [, loading, error, sendRequest] = useLazyRequest({
     request: signUp,
+    withPostSuccess: () => {
+      history.push('/');
+    },
     withPostFailure: (err) => {
       setErrorMsg(getNetworkError(err, t('Signup:registeredEmailError')));
     }
@@ -88,7 +92,7 @@ function Signup() {
         {error && <p className={styles.errorMessage}>{errorMessage}</p>}
         <Button type="submit" text={t('Signup:signUp')} className="m-top-2" />
         <hr className={styles.divider} />
-        <Button variant="outlined" text={t('Signup:login')} />
+        <Button variant="outlined" text={t('Signup:login')} onClick={() => history.push('/')} />
       </form>
       <Button
         variant="text"
