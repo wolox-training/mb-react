@@ -1,8 +1,14 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 
+import { signUp } from 'services/UsersService';
+import { useLazyRequest } from 'hooks/useRequest';
+import { User } from 'utils/types';
+import { getNetworkError } from 'utils/errorValidations';
 import Button from 'components/Button';
 import Input from 'components/Input';
+import Spinner from 'components/Spinner';
 import {
   requiredValidation,
   emailValidation,
@@ -13,24 +19,28 @@ import {
 import logo from './assets/wolox-logo.png';
 import styles from './styles.module.scss';
 
-interface SignupForm {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
-}
-
 function Signup() {
+  const [errorMessage, setErrorMsg] = useState('');
+
   const { t, i18n } = useTranslation();
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors }
-  } = useForm<SignupForm>();
+  } = useForm<User>();
 
-  const onSubmit = handleSubmit((values) => console.log({ ...values, locale: 'en' }));
+  const [, loading, error, sendRequest] = useLazyRequest({
+    request: signUp,
+    withPostFailure: (err) => {
+      setErrorMsg(getNetworkError(err, t('Signup:registeredEmailError')));
+    }
+  });
+
+  const onSubmit = handleSubmit((values) => {
+    sendRequest(values);
+  });
 
   const handleChangeLanguage = () => {
     i18n.changeLanguage(i18n.language === 'es' ? 'en' : 'es');
@@ -75,6 +85,7 @@ function Signup() {
           inputRef={register(confirmPasswordValidation(t, watch('password')))}
           errorText={errors.passwordConfirmation ? errors.passwordConfirmation.message : ''}
         />
+        {error && <p className={styles.errorMessage}>{errorMessage}</p>}
         <Button type="submit" text={t('Signup:signUp')} className="m-top-2" />
         <hr className={styles.divider} />
         <Button variant="outlined" text={t('Signup:login')} />
@@ -85,6 +96,11 @@ function Signup() {
         onClick={handleChangeLanguage}
         className="m-top-4"
       />
+      {loading && (
+        <div className={styles.overlayContainer}>
+          <Spinner containerClassName={styles.spinner} />
+        </div>
+      )}
     </div>
   );
 }
