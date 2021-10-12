@@ -52,8 +52,10 @@ api.addRequestTransform(request => {
 });
 
 api.addResponseTransform(response => {
-  if(response.data) {
+  if(response.ok) {
     response.data = camelcaseSerializer.serialize(response.data);
+  } else {
+    throw response;
   }
 })
 

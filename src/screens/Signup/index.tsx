@@ -17,7 +17,8 @@ import {
   confirmPasswordValidation
 } from 'utils/formValidations';
 
-import logo from './assets/wolox-logo.png';
+import logo from '../../assets/wolox-logo.png';
+
 import styles from './styles.module.scss';
 
 function Signup() {
