@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 import { signUp } from 'services/UsersService';
 import { useLazyRequest } from 'hooks/useRequest';

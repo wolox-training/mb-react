@@ -5,6 +5,10 @@ import { setupServer } from 'msw/node';
 
 import Signup from '.';
 
+const mockHistoryPush = jest.fn();
+
+jest.mock('react-router-dom', () => ({ useHistory: () => ({ push: mockHistoryPush }) }));
+
 describe('Signup component', () => {
   beforeEach(() => render(<Signup />));
 
@@ -49,9 +53,10 @@ describe('Signup component', () => {
     afterEach(() => server.resetHandlers());
     afterAll(() => server.close());
 
-    test('Should submit form if all fields are valid', async () => {
+    test('Should submit form and redirect to Login', async () => {
       userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
-      await waitFor(() => expect(screen.queryByText(/Signup:registeredEmailError/)).not.toBeInTheDocument());
+      // await waitFor(() => expect(screen.queryByText(/Signup:registeredEmailError/)).not.toBeInTheDocument());
+      await waitFor(() => expect(mockHistoryPush).toBeCalledWith('/'));
     });
 
     test('Should submit and show error if user is already registered', async () => {
