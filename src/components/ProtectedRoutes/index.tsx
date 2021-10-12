@@ -5,7 +5,7 @@ import Signup from 'screens/Signup';
 import Home from 'screens/Home';
 
 function ProtectedRoutes() {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <Switch>

@@ -1,4 +1,4 @@
-import ProtectedRoutes from 'components/ProtectedRoutes/ProtectedRoutes';
+import ProtectedRoutes from 'components/ProtectedRoutes';
 import 'scss/application.scss';
 
 function App() {
