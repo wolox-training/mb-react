@@ -1,6 +1,6 @@
 import { Route, Redirect } from 'react-router-dom';
 
-import { PATHS } from 'constants/routes';
+import { PATHS } from 'constants/paths';
 
 interface Props {
   isPrivate?: boolean;

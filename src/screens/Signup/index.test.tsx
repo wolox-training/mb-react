@@ -7,7 +7,10 @@ import Signup from '.';
 
 const mockHistoryPush = jest.fn();
 
-jest.mock('react-router-dom', () => ({ useHistory: () => ({ push: mockHistoryPush }) }));
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useHistory: () => ({ push: mockHistoryPush })
+}));
 
 describe('Signup component', () => {
   beforeEach(() => render(<Signup />));

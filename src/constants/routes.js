@@ -1,10 +1,6 @@
 import Signup from 'screens/Signup';
 
-export const PATHS = {
-  home: '/',
-  login: '/',
-  signup: '/sign_up'
-};
+import { PATHS } from './paths';
 
 export const ROUTES = [
   {

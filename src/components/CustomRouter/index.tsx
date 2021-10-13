@@ -1,8 +1,8 @@
 import { Route, Switch } from 'react-router-dom';
 
+import { ROUTES } from 'constants/routes';
 import Login from 'screens/Login';
 import Home from 'screens/Home';
-import { ROUTES } from 'constants/routes';
 
 import CustomRoute from './CustomRoute';
 
