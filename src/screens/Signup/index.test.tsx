@@ -55,7 +55,6 @@ describe('Signup component', () => {
 
     test('Should submit form and redirect to Login', async () => {
       userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
-      // await waitFor(() => expect(screen.queryByText(/Signup:registeredEmailError/)).not.toBeInTheDocument());
       await waitFor(() => expect(mockHistoryPush).toBeCalledWith('/'));
     });
 

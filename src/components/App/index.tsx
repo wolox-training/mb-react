@@ -1,8 +1,8 @@
-import ProtectedRoutes from 'components/ProtectedRoutes';
+import CustomRouter from 'components/CustomRouter';
 import 'scss/application.scss';
 
 function App() {
-  return <ProtectedRoutes />;
+  return <CustomRouter />;
 }
 
 export default App;
