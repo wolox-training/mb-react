@@ -7,7 +7,10 @@ import Signup from '.';
 
 const mockHistoryPush = jest.fn();
 
-jest.mock('react-router-dom', () => ({ useHistory: () => ({ push: mockHistoryPush }) }));
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useHistory: () => ({ push: mockHistoryPush })
+}));
 
 describe('Signup component', () => {
   beforeEach(() => render(<Signup />));
@@ -55,7 +58,6 @@ describe('Signup component', () => {
 
     test('Should submit form and redirect to Login', async () => {
       userEvent.click(screen.getByRole('button', { name: /Signup:signUp/ }));
-      // await waitFor(() => expect(screen.queryByText(/Signup:registeredEmailError/)).not.toBeInTheDocument());
       await waitFor(() => expect(mockHistoryPush).toBeCalledWith('/'));
     });
 

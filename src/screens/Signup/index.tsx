@@ -7,15 +7,16 @@ import { signUp } from 'services/UsersService';
 import { useLazyRequest } from 'hooks/useRequest';
 import { User } from 'utils/types';
 import { getNetworkError } from 'utils/errorValidations';
-import Button from 'components/Button';
-import Input from 'components/Input';
-import Spinner from 'components/Spinner';
 import {
   requiredValidation,
   emailValidation,
   passwordValidation,
   confirmPasswordValidation
 } from 'utils/formValidations';
+import { PATHS } from 'constants/paths';
+import Button from 'components/Button';
+import Input from 'components/Input';
+import Spinner from 'components/Spinner';
 
 import logo from '../../assets/wolox-logo.png';
 
@@ -36,7 +37,7 @@ function Signup() {
   const [, loading, error, sendRequest] = useLazyRequest({
     request: signUp,
     withPostSuccess: () => {
-      history.push('/');
+      history.push(PATHS.login);
     },
     withPostFailure: (err) => {
       setErrorMsg(getNetworkError(err, t('Signup:registeredEmailError')));
@@ -93,7 +94,7 @@ function Signup() {
         {error && <p className={styles.errorMessage}>{errorMessage}</p>}
         <Button type="submit" text={t('Signup:signUp')} className="m-top-2" />
         <hr className={styles.divider} />
-        <Button variant="outlined" text={t('Signup:login')} onClick={() => history.push('/')} />
+        <Button variant="outlined" text={t('Signup:login')} onClick={() => history.push(PATHS.login)} />
       </form>
       <Button
         variant="text"
