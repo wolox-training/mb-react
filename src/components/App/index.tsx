@@ -1,8 +1,8 @@
-import Signup from 'screens/Signup';
+import CustomRouter from 'components/CustomRouter';
 import 'scss/application.scss';
 
 function App() {
-  return <Signup />;
+  return <CustomRouter />;
 }
 
 export default App;

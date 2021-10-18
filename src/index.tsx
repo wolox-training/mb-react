@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import 'scss/application.scss';
 
@@ -11,7 +12,9 @@ import reportWebVitals from './reportWebVitals';
 const renderApp = () => {
   render(
     <StrictMode>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </StrictMode>,
     document.getElementById('root')
   );
