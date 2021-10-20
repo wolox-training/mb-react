@@ -1,7 +1,7 @@
 @import 'variables/colors';
 @import 'variables/animations';
 
-.signup-wrapper {
+.login-wrapper {
   background: $wild-sand;
   border-top: 8px solid $cerulean;
   margin: 52px auto;
@@ -26,12 +26,12 @@
 
 .overlay-container {
   background-color: rgba($wild-sand, 0.8);
-  position: absolute;
-  z-index: 1;
-  top: 0;
   height: 100%;
   left: 0;
+  position: absolute;
+  top: 0;
   width: 100%;
+  z-index: 1;
 }
 
 .spinner {

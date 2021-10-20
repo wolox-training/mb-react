@@ -17,8 +17,8 @@ import { PATHS } from 'constants/paths';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import Spinner from 'components/Spinner';
+import logo from 'assets/wolox-logo.png';
 
-import logo from './assets/wolox-logo.png';
 import styles from './styles.module.scss';
 
 function Signup() {
