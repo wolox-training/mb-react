@@ -8,7 +8,7 @@ function CustomRouter() {
   return (
     <Switch>
       {ROUTES.map(({ path, screen, isPrivate }) => (
-        <CustomRoute isPrivate={isPrivate} path={path} screen={screen} key={path} />
+        <CustomRoute isPrivate={isPrivate} path={path} component={screen} key={path} />
       ))}
     </Switch>
   );
