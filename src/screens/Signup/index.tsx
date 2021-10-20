@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 import { signUp } from 'services/UsersService';
-import { useLazyRequest, Error } from 'hooks/useRequest';
+import { useLazyRequest } from 'hooks/useRequest';
 import { User } from 'utils/types';
 import { getNetworkError } from 'utils/errorValidations';
 import {
@@ -38,7 +38,7 @@ function Signup() {
     withPostSuccess: () => {
       history.push(PATHS.login);
     },
-    withPostFailure: (err: Error<unknown>) => {
+    withPostFailure: (err) => {
       setErrorMsg(getNetworkError(err, t('Signup:registeredEmailError')));
     }
   });
