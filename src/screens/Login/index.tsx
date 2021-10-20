@@ -8,12 +8,10 @@ import Input from 'components/Input';
 import Button from 'components/Button';
 import Spinner from 'components/Spinner';
 import { requiredValidation, emailValidation } from 'utils/formValidations';
-import { User } from 'utils/types';
+import { User, Error } from 'utils/types';
 import { signIn } from 'services/UsersService';
 import { getNetworkError } from 'utils/errorValidations';
-import { Error } from 'hooks/useRequest';
-
-import logo from '../../assets/wolox-logo.png';
+import logo from 'assets/wolox-logo.png';
 
 import styles from './styles.module.scss';
 
@@ -34,7 +32,9 @@ function Login() {
         uid: headers?.uid,
         client: headers?.client
       }),
-    onError: (err: Error<unknown>) => setErrorMsg(getNetworkError(err, t('Login:credentialsError')))
+    onError: (err: Error) => {
+      setErrorMsg(getNetworkError(err, t('Login:credentialsError')));
+    }
   });
 
   const onSubmit = handleSubmit((values) => {

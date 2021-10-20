@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 import { signUp } from 'services/UsersService';
-import { useLazyRequest } from 'hooks/useRequest';
+import { useLazyRequest, Error } from 'hooks/useRequest';
 import { User } from 'utils/types';
 import { getNetworkError } from 'utils/errorValidations';
 import {
@@ -17,8 +17,7 @@ import { PATHS } from 'constants/paths';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import Spinner from 'components/Spinner';
-
-import logo from '../../assets/wolox-logo.png';
+import logo from 'assets/wolox-logo.png';
 
 import styles from './styles.module.scss';
 
@@ -39,7 +38,7 @@ function Signup() {
     withPostSuccess: () => {
       history.push(PATHS.login);
     },
-    withPostFailure: (err) => {
+    withPostFailure: (err: Error<unknown>) => {
       setErrorMsg(getNetworkError(err, t('Signup:registeredEmailError')));
     }
   });
