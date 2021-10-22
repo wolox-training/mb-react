@@ -1,0 +1,28 @@
+@import 'variables/colors';
+
+.book-card {
+  background-color: $white;
+  box-shadow: 0 4px 10px rgba($black,0.5);
+  box-sizing: border-box;
+  padding: 28px 28px 22px;
+  width: 198px;
+}
+
+.book-cover {
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.title {
+  color: $black;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.author {
+  color: $bitter;
+  font-size: 14px;
+  line-height: 18px;
+}
