@@ -4,18 +4,17 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
+import api from 'config/api';
 import { requiredValidation, emailValidation } from 'utils/formValidations';
-import { User } from 'utils/types';
+import { User, Error } from 'utils/types';
+import { getNetworkError } from 'utils/errorValidations';
 import { signIn } from 'services/UsersService';
 import LocalStorageService from 'services/LocalStorageService';
-import { getNetworkError } from 'utils/errorValidations';
-import { Error } from 'hooks/useRequest';
 import { PATHS } from 'constants/paths';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import Spinner from 'components/Spinner';
-
-import logo from '../../assets/wolox-logo.png';
+import logo from 'assets/wolox-logo.png';
 
 import styles from './styles.module.scss';
 
@@ -32,9 +31,16 @@ function Login() {
   const { mutate, isLoading, isError } = useMutation((values: User) => signIn(values), {
     onSuccess: ({ headers }) => {
       LocalStorageService.setValue('access-token', headers?.['access-token']);
+      api.setHeaders({
+        'access-token': headers?.['access-token'] || '',
+        client: headers?.client || '',
+        uid: headers?.uid || ''
+      });
       history.push(PATHS.home);
     },
-    onError: (err: Error<unknown>) => setErrorMsg(getNetworkError(err, t('Login:credentialsError')))
+    onError: (err: Error) => {
+      setErrorMsg(getNetworkError(err, t('Login:credentialsError')));
+    }
   });
 
   const onSubmit = handleSubmit((values) => {

@@ -32,7 +32,9 @@ describe('Login component', () => {
 
   describe('With valid inputs', () => {
     const url = 'https://books-training-rails.herokuapp.com/api/v1/users/sign_in';
-    const server = setupServer(rest.post(url, (req, res, ctx) => res(ctx.json({ todoOk: true }))));
+    const server = setupServer(
+      rest.post(url, (req, res, ctx) => res(ctx.status(200), ctx.json({ data: { ok: true } })))
+    );
     const user = {
       email: 'analopez@gmail.com',
       password: 'analopez3'
