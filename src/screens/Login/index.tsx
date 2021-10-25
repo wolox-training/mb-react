@@ -31,6 +31,8 @@ function Login() {
   const { mutate, isLoading, isError } = useMutation((values: User) => signIn(values), {
     onSuccess: ({ headers }) => {
       LocalStorageService.setValue('access-token', headers?.['access-token']);
+      LocalStorageService.setValue('uid', headers?.uid);
+      LocalStorageService.setValue('client', headers?.client);
       api.setHeaders({
         'access-token': headers?.['access-token'] || '',
         client: headers?.client || '',

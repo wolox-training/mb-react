@@ -1,5 +1,6 @@
 import { create } from 'apisauce';
 import { CamelcaseSerializer, SnakecaseSerializer } from 'cerealizr';
+import LocalStorageService from 'services/LocalStorageService';
 
 const baseURL = 'https://books-training-rails.herokuapp.com/api/v1';
 
@@ -46,6 +47,13 @@ export const apiSetup = (unauthorizedCallback, networkErrorCallback) => {
 };
 
 api.addRequestTransform(request => {
+  if(LocalStorageService.getValue('access-token')) {
+    api.setHeaders({
+      'access-token': LocalStorageService.getValue('access-token'),
+      client: LocalStorageService.getValue('client'),
+      uid: LocalStorageService.getValue('uid')
+    });
+  }
   if(request.data) {
     request.data = snakecaseSerializer.serialize(request.data);
   }
@@ -57,6 +65,6 @@ api.addResponseTransform(response => {
   } else {
     throw { problem: response.problem, status: response.status, data: response.data };
   }
-})
+});
 
 export default api;

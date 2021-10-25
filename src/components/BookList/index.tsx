@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query';
 
+import Spinner from 'components/Spinner';
 import { getBooks } from 'services/BooksService';
 
 import BookListItem, { Book } from './BookListItem';
@@ -9,12 +10,11 @@ function BookList() {
   const { isLoading, data } = useQuery('books', getBooks);
 
   if (isLoading) {
-    return <p>CARGANDO...</p>;
+    return <Spinner containerClassName={styles.loader} />;
   }
 
   return (
     <>
-      <h1>BOOK LIST</h1>
       <div className={styles.bookContainer}>
         {data &&
           data.page.map((book: Book) => (
