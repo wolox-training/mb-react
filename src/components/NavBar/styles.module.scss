@@ -1,0 +1,17 @@
+@import 'variables/colors';
+
+.nav {
+  box-shadow: 0 4px 10px rgba($black,0.5), -1px 7px 0px -1px $cerulean inset;
+  padding: 0 24px;
+}
+
+.nav-content {
+  margin: 0 auto;
+  max-width: 872px;
+}
+
+.logout-btn {
+  color: $black;
+  font-size: 18px;
+  line-height: 21px;
+}

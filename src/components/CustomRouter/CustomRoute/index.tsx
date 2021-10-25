@@ -1,13 +1,15 @@
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 
+import LocalStorageService from 'services/LocalStorageService';
 import { PATHS } from 'constants/paths';
 
 interface Props {
   isPrivate?: boolean;
-  userLogged: boolean;
 }
 
-function CustomRoute({ isPrivate = false, userLogged, ...props }: Props & RouteProps) {
+function CustomRoute({ isPrivate = false, ...props }: Props & RouteProps) {
+  const userLogged = LocalStorageService.getValue('access-token');
+
   if (isPrivate) {
     return userLogged ? <Route {...props} /> : <Redirect to={PATHS.login} />;
   }
