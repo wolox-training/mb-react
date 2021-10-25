@@ -29,6 +29,10 @@ const setValue = (key: string, value: any) => {
   }
 };
 
+const setValues = (values: Record<string, string>) => {
+  Object.entries(values).map((value) => setValue(value[0], value[1]));
+};
+
 const removeValue = (key: string) => {
   const encodedKey = getEncodedFieldName(key);
   try {
@@ -41,6 +45,7 @@ const removeValue = (key: string) => {
 const LocalStorageService = {
   getValue,
   setValue,
+  setValues,
   removeValue
 };
 

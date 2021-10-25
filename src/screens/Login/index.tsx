@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
+import { HEADERS } from 'apisauce';
 
-import api from 'config/api';
 import { requiredValidation, emailValidation } from 'utils/formValidations';
 import { User, Error } from 'utils/types';
 import { getNetworkError } from 'utils/errorValidations';
@@ -30,13 +30,11 @@ function Login() {
 
   const { mutate, isLoading, isError } = useMutation((values: User) => signIn(values), {
     onSuccess: ({ headers }) => {
-      LocalStorageService.setValue('access-token', headers?.['access-token']);
-      LocalStorageService.setValue('uid', headers?.uid);
-      LocalStorageService.setValue('client', headers?.client);
-      api.setHeaders({
-        'access-token': headers?.['access-token'] || '',
-        client: headers?.client || '',
-        uid: headers?.uid || ''
+      const { 'access-token': accessToken, uid, client } = headers as HEADERS;
+      LocalStorageService.setValues({
+        'access-token': accessToken,
+        client,
+        uid
       });
       history.push(PATHS.home);
     },
