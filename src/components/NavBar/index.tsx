@@ -14,6 +14,8 @@ function NavBar() {
 
   const logOut = () => {
     LocalStorageService.removeValue('access-token');
+    LocalStorageService.removeValue('client');
+    LocalStorageService.removeValue('uid');
     api.deleteHeader('access-token');
     api.deleteHeader('client');
     api.deleteHeader('uid');

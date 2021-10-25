@@ -47,7 +47,7 @@ export const apiSetup = (unauthorizedCallback, networkErrorCallback) => {
 };
 
 api.addRequestTransform(request => {
-  if(LocalStorageService.getValue('access-token')) {
+  if(!request.headers['access-token'] && LocalStorageService.getValue('access-token')) {
     api.setHeaders({
       'access-token': LocalStorageService.getValue('access-token'),
       client: LocalStorageService.getValue('client'),
