@@ -1,9 +1,9 @@
 import styles from './styles.module.scss';
 
 export interface Book {
+  id: number;
   title: string;
   author: string;
-  id?: number;
   imageUrl: string;
 }
 
