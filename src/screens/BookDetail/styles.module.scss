@@ -1,0 +1,63 @@
+@import 'variables/colors';
+
+.container {
+  margin: 46px auto;
+  max-width: 900px;
+  width: 90%;
+}
+
+.loader {
+  margin-top: 100px;
+}
+
+.back-button {
+  color: $black;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 12px;
+}
+
+.book-container {
+  background-color: $white;
+  box-shadow: 0 4px 10px rgba($black,0.5);
+  height: 416px;
+  margin-top: 108px;
+  padding: 24px;
+}
+
+.book-cover {
+  margin-right: 52px;
+  width: 260px;
+}
+
+.book-info {
+  width: 100%;
+
+  .title {
+    border-bottom: 4px solid $earls-green;
+    color: $black;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 38px;
+    margin-bottom: 36px;
+    padding-bottom: 12px;
+    width: 100%;
+  }
+
+  .genre {
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: 8px;
+  }
+
+  .info-item {
+    font-size: 20px;
+    margin-bottom: 36px;
+
+    span {
+      color: $black;
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+}

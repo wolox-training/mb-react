@@ -14,7 +14,13 @@ function BookList() {
       {isLoading && <Spinner containerClassName={styles.loader} />}
       {data &&
         data.page.map((book: Book) => (
-          <BookListItem title={book.title} author={book.author} imageUrl={book.imageUrl} key={book.id} />
+          <BookListItem
+            id={book.id}
+            title={book.title}
+            author={book.author}
+            imageUrl={book.imageUrl}
+            key={book.id}
+          />
         ))}
     </div>
   );
