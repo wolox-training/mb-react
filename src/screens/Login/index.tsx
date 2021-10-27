@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { HEADERS } from 'apisauce';
 
+import api from 'config/api';
 import { requiredValidation, emailValidation } from 'utils/formValidations';
 import { User, Error } from 'utils/types';
 import { getNetworkError } from 'utils/errorValidations';
@@ -20,7 +21,7 @@ import styles from './styles.module.scss';
 
 function Login() {
   const history = useHistory();
-  const [errorMessage, setErrorMsg] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const { t } = useTranslation();
   const {
     register,
@@ -36,10 +37,11 @@ function Login() {
         client,
         uid
       });
+      api.setHeaders({ 'access-token': accessToken, uid, client });
       history.push(PATHS.home);
     },
     onError: (err: Error) => {
-      setErrorMsg(getNetworkError(err, t('Login:credentialsError')));
+      setErrorMessage(getNetworkError(err, t('Login:credentialsError')));
     }
   });
 

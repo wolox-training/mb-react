@@ -9,19 +9,14 @@ import styles from './styles.module.scss';
 function BookList() {
   const { isLoading, data } = useQuery('books', getBooks);
 
-  if (isLoading) {
-    return <Spinner containerClassName={styles.loader} />;
-  }
-
   return (
-    <>
-      <div className={styles.bookContainer}>
-        {data &&
-          data.page.map((book: Book) => (
-            <BookListItem title={book.title} author={book.author} imageUrl={book.imageUrl} key={book.id} />
-          ))}
-      </div>
-    </>
+    <div className={styles.bookContainer}>
+      {isLoading && <Spinner containerClassName={styles.loader} />}
+      {data &&
+        data.page.map((book: Book) => (
+          <BookListItem title={book.title} author={book.author} imageUrl={book.imageUrl} key={book.id} />
+        ))}
+    </div>
   );
 }
 

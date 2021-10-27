@@ -47,13 +47,6 @@ export const apiSetup = (unauthorizedCallback, networkErrorCallback) => {
 };
 
 api.addRequestTransform(request => {
-  if(!request.headers['access-token'] && LocalStorageService.getValue('access-token')) {
-    api.setHeaders({
-      'access-token': LocalStorageService.getValue('access-token'),
-      client: LocalStorageService.getValue('client'),
-      uid: LocalStorageService.getValue('uid')
-    });
-  }
   if(request.data) {
     request.data = snakecaseSerializer.serialize(request.data);
   }
