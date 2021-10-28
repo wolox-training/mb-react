@@ -1,6 +1,5 @@
 import { create } from 'apisauce';
 import { CamelcaseSerializer, SnakecaseSerializer } from 'cerealizr';
-import LocalStorageService from 'services/LocalStorageService';
 
 const baseURL = 'https://books-training-rails.herokuapp.com/api/v1';
 
