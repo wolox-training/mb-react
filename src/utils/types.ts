@@ -14,3 +14,13 @@ export interface User {
   passwordConfirmation: string;
   locale: string;
 }
+
+export interface Book {
+  author: string;
+  editor: string;
+  genre: string;
+  id: number;
+  imageUrl: string;
+  title: string;
+  year: string;
+}
