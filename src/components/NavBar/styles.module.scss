@@ -1,6 +1,7 @@
 @import 'variables/colors';
 
 .nav {
+  background-color: $white;
   box-shadow: 0 4px 10px rgba($black,0.5), -1px 7px 0px -1px $cerulean inset;
   padding: 0 24px;
 }

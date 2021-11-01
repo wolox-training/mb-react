@@ -57,6 +57,6 @@ api.addResponseTransform(response => {
   } else {
     throw { problem: response.problem, status: response.status, data: response.data };
   }
-})
+});
 
 export default api;

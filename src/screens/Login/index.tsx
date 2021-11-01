@@ -20,7 +20,7 @@ import styles from './styles.module.scss';
 
 function Login() {
   const history = useHistory();
-  const [errorMessage, setErrorMsg] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const { t } = useTranslation();
   const {
     register,
@@ -30,16 +30,17 @@ function Login() {
 
   const { mutate, isLoading, isError } = useMutation((values: User) => signIn(values), {
     onSuccess: ({ headers }) => {
-      LocalStorageService.setValue('access-token', headers?.['access-token']);
-      api.setHeaders({
+      const values = {
         'access-token': headers?.['access-token'] || '',
         client: headers?.client || '',
         uid: headers?.uid || ''
-      });
+      };
+      LocalStorageService.setValues(values);
+      api.setHeaders(values);
       history.push(PATHS.home);
     },
     onError: (err: Error) => {
-      setErrorMsg(getNetworkError(err, t('Login:credentialsError')));
+      setErrorMessage(getNetworkError(err, t('Login:credentialsError')));
     }
   });
 

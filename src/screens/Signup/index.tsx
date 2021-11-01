@@ -23,7 +23,7 @@ import styles from './styles.module.scss';
 
 function Signup() {
   const history = useHistory();
-  const [errorMessage, setErrorMsg] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const { t, i18n } = useTranslation();
 
   const {
@@ -39,7 +39,7 @@ function Signup() {
       history.push(PATHS.login);
     },
     withPostFailure: (err) => {
-      setErrorMsg(getNetworkError(err, t('Signup:registeredEmailError')));
+      setErrorMessage(getNetworkError(err, t('Signup:registeredEmailError')));
     }
   });
 
