@@ -1,6 +1,7 @@
+import Login from 'screens/Login';
 import Signup from 'screens/Signup';
 import Home from 'screens/Home';
-import Login from 'screens/Login';
+import BookDetail from 'screens/BookDetail';
 
 import { PATHS } from './paths';
 
@@ -13,6 +14,11 @@ export const ROUTES = [
   {
     path: PATHS.home,
     screen: Home,
+    isPrivate: true
+  },
+  {
+    path: `${PATHS.bookDetail}/:id`,
+    screen: BookDetail,
     isPrivate: true
   },
   {
